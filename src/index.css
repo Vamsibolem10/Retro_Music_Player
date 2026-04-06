@@ -1,0 +1,351 @@
+:root {
+  --marshall-gold: #c5a059;
+  --marshall-gold-bright: #e5c07b;
+  --tolex-black: #1a1a1a;
+  --grill-cloth: #2a2a2a;
+  --ivory: #fcfaf2;
+}
+
+body {
+  background-color: #0a0a0a;
+  background-image: 
+      radial-gradient(circle at 50% 50%, rgba(60, 40, 30, 0.15) 0%, #0a0a0a 100%),
+      url('https://www.transparenttextures.com/patterns/dark-leather.png');
+  color: var(--ivory);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+/* The Marshall "Head" Unit */
+.amp-head {
+  width: 100%;
+  max-width: 1000px;
+  background: var(--tolex-black);
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 50px 100px -20px rgba(0,0,0,1), 0 0 0 2px #333;
+  position: relative;
+  margin-bottom: 40px;
+  /* Add Grill Cloth Backing */
+  background-image: 
+    repeating-linear-gradient(45deg, #111 0, #111 1px, transparent 0, transparent 50%),
+    repeating-linear-gradient(135deg, #111 0, #111 1px, #1a1a1a 0, #1a1a1a 50%);
+  background-size: 4px 4px;
+}
+
+/* Gold Faceplate */
+.faceplate {
+  background: linear-gradient(145deg, var(--marshall-gold), #8d6e35);
+  border-radius: 4px;
+  padding: 15px;
+  border: 1px solid #444;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  position: relative;
+  box-shadow: inset 0 2px 10px rgba(255,255,255,0.3);
+}
+
+@media (min-width: 768px) {
+  .faceplate {
+    padding: 30px;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 30px;
+  }
+}
+
+.faceplate::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('https://www.transparenttextures.com/patterns/brushed-alum.png');
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+/* Script Logo */
+.vault-logo {
+  font-family: 'Pacifico', cursive;
+  color: white;
+  font-size: 3.5rem;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+/* Deck Window (Carvaan Style) */
+.deck-display {
+  background: #000;
+  height: 180px;
+  border-radius: 4px;
+  border: 4px solid #333;
+  box-shadow: inset 0 0 30px rgba(0,0,0,1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spool {
+  width: 45px;
+  height: 45px;
+  background: #222;
+  border-radius: 50%;
+  border: 2px solid #444;
+  position: relative;
+  animation: spin 4s linear infinite;
+  animation-play-state: paused;
+}
+.spool.active { animation-play-state: running; }
+.spool::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px; height: 10px;
+  background: #000;
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Tactile Knobs */
+.knob-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.knob {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(145deg, #444, #111);
+  border-radius: 50%;
+  border: 2px solid #000;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  transition: transform 0.2s;
+}
+.knob::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 10px;
+  background: var(--ivory);
+  border-radius: 2px;
+}
+
+.knob-label {
+  font-size: 8px;
+  font-weight: 900;
+  color: #222;
+  text-transform: uppercase;
+}
+
+/* Control Panel Buttons */
+.btn-amp {
+  background: #222;
+  border: 1px solid #111;
+  color: var(--marshall-gold);
+  padding: 10px;
+  border-radius: 2px;
+  box-shadow: 0 3px 0 #000;
+  transition: all 0.1s;
+}
+.btn-amp:active { transform: translateY(2px); box-shadow: 0 1px 0 #000; }
+.btn-amp.active { color: #fff; background: #c5a059; border-color: #fff; }
+
+/* Marshall Cabinet (Library) */
+.amp-cabinet {
+  width: 100%;
+  max-width: 1000px;
+  background: var(--tolex-black);
+  border-radius: 8px;
+  border: 2px solid #333;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.grill-cloth {
+  background-color: var(--grill-cloth);
+  background-image: 
+      repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px),
+      repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px);
+  border-radius: 4px;
+  padding: 20px;
+  min-height: 400px;
+  box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+}
+
+/* Tape Styles */
+.cassette {
+  background: #fcfaf2; /* Ivory Label */
+  height: 110px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.3);
+}
+.cassette:hover { transform: translateY(-5px) scale(1.02); }
+.cassette.playing {
+  border-color: #c5a059;
+  box-shadow: 0 0 30px rgba(197, 160, 89, 0.4);
+}
+
+.cassette.playing .tape-label {
+  opacity: 1;
+}
+
+.tape-label {
+  padding: 10px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tape-title {
+  font-family: 'Permanent Marker', cursive;
+  color: #333;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tape-artist {
+  font-size: 10px;
+  color: #888;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.tape-stripe {
+  height: 10px;
+  width: 100%;
+}
+
+/* Animation */
+@keyframes insert {
+  0% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(0.3) rotate(15deg); opacity: 0; }
+}
+
+@keyframes eject {
+  0% { transform: translate(0, 0) scale(0.3) rotate(15deg); opacity: 1; }
+  100% { transform: translate(-300px, 400px) scale(1) rotate(-10deg); opacity: 0; }
+}
+
+.animate-insert {
+  animation: insert 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-eject {
+  animation: eject 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Speaker Cabinet Styling */
+.speaker-cabinet {
+  background: #111;
+  box-shadow: 
+    inset 0 0 50px rgba(0,0,0,0.8),
+    0 20px 40px rgba(0,0,0,0.5);
+  border: 4px solid #1a1a1a;
+  background-image: 
+    linear-gradient(45deg, #111 25%, transparent 25%),
+    linear-gradient(-45deg, #111 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #111 75%),
+    linear-gradient(-45deg, transparent 75%, #111 75%);
+  background-size: 4px 4px; /* Tolex texture */
+}
+
+.grill-cloth-speaker {
+  background: 
+    repeating-linear-gradient(45deg, #222 0, #222 1px, transparent 0, transparent 50%),
+    repeating-linear-gradient(135deg, #222 0, #222 1px, #111 0, #111 50%);
+  background-size: 3px 3px;
+  border: 10px solid #151515;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.9);
+}
+
+@keyframes thump {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.03); filter: brightness(1.3); }
+}
+
+.animate-thump {
+  animation: thump 0.4s ease-in-out infinite;
+}
+
+/* Digital LCD */
+.lcd-display {
+  font-family: 'Orbitron', sans-serif;
+  background: #111;
+  color: #ff3131;
+  padding: 10px;
+  border: 1px solid #333;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  box-shadow: inset 0 0 15px rgba(255,0,0,0.4);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.lcd-display::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+.lcd-display::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: rgba(18, 16, 16, 0.1);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.1; }
+  5% { opacity: 0.2; }
+  10% { opacity: 0.1; }
+  15% { opacity: 0.3; }
+  20% { opacity: 0.1; }
+  25% { opacity: 0.4; }
+  30% { opacity: 0.2; }
+  35% { opacity: 0.1; }
+  40% { opacity: 0.3; }
+  45% { opacity: 0.4; }
+  50% { opacity: 0.5; }
+  55% { opacity: 0.1; }
+  60% { opacity: 0.2; }
+  100% { opacity: 0.1; }
+}
+
+.scroll-custom::-webkit-scrollbar { width: 8px; }
+.scroll-custom::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+.scroll-custom::-webkit-scrollbar-thumb { background: var(--marshall-gold); }
+
+.hidden { display: none; }
